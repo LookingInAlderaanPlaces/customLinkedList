@@ -7,6 +7,7 @@ void deleteNode(LinkedList<int>& MyList, int& theInt);
 void peekFirst(LinkedList<int>& MyList);
 void peekLast(LinkedList<int>& MyList);
 void directions();
+void intInputValidataion(int& theInt);
 
 
 int main() {
@@ -16,17 +17,21 @@ int main() {
     while(!done){
         directions();
         std::cin >> input;
+        std::cout << "-----------------------------------\n";
+        intInputValidataion(input);
         switch (input){
         case 1:
-            std::cout << "Enter a number you would like to add:\n";
+            std::cout << "Enter a number you would like to add: ";
             std::cin >> number;
+            intInputValidataion(number);
             InsertNode(MyList, number);
             break;
     
         case 2:
             if (!MyList.isEmpty()){
-                std::cout << "Enter a number you would like to remove:\n";
+                std::cout << "Enter a number you would like to remove:";
                 std::cin >> number;
+                intInputValidataion(number);
                 deleteNode(MyList, number);
             }
             else{
@@ -71,7 +76,7 @@ void deleteNode(LinkedList<int>& MyList, int& theInt){
     MyList.removeNode(theInt);
 }
 void peekFirst(LinkedList<int>& MyList){
-    std::cout << "First item is: " << MyList.getFirstInput();
+    std::cout << "First item is: " << MyList.getFirstInput() << std::endl;
 }
 
 void peekLast(LinkedList<int>& MyList){
@@ -87,4 +92,15 @@ void directions(){
                  "To see last item press \"5\"\n"
                  "To quit the program press \"6\"\n"
                  "-----------------------------------\n";
+}
+
+void intInputValidataion(int& theInt){
+    while (!std::cin.good()){
+        std::cout << "ERROR: Incorrect data entered!\n"
+                     "-----------------------------------\n";
+        std::cin.clear();
+        std::cin.ignore(INT_MAX , '\n');
+        std::cout << "Re-enter number: ";
+        std::cin >> theInt;
+        }
 }

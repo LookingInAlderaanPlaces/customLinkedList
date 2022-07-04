@@ -34,9 +34,9 @@ void LinkedList<ItemType>::removeNode(ItemType anEntry) {
         while (tempPtr->getNext() != tailPtr){
             tempPtr = tempPtr->getNext();
         }
+        delete tailPtr;
         tailPtr = tempPtr;
         tailPtr->setNext(nullptr);
-        delete tempPtr;
         --ItemCount;
     }
     else{
@@ -54,8 +54,6 @@ void LinkedList<ItemType>::removeNode(ItemType anEntry) {
         }
         else{
             std::cout << "Your desired item does not exist!\n";
-            delete tempPtr;
-            delete tempTwoPtr;
         }
     }
 }
@@ -90,13 +88,3 @@ bool LinkedList<ItemType>::isEmpty(){
     }
     
 }
-/*
-template<typename ItemType>
-void clearList(){
-    while (headPtr != nullptr){
-        //std::cout << headPtr->data << std::endl;
-        delete headPtr;
-    }
-    delete headPtr;
-}
-*/
