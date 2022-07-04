@@ -95,11 +95,11 @@ void directions(){
 }
 
 void intInputValidataion(int& theInt){
-    while (!std::cin.good()){
+    while (!std::cin.good() || std::cin.peek() == ' '){
         std::cout << "ERROR: Incorrect data entered!\n"
                      "-----------------------------------\n";
         std::cin.clear();
-        std::cin.ignore(INT_MAX , '\n');
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max() , '\n');
         std::cout << "Re-enter number: ";
         std::cin >> theInt;
         }
